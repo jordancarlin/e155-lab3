@@ -39,7 +39,8 @@ module key_scan #(parameter DELAY = 100) (
         else nextstate = R0;
       PRESSED: nextstate = WAIT;
       WAIT:
-        if (counter >= DELAY) nextstate = IDLE;
+        if (|cols) nextstate = WAIT;
+        else if (counter >= DELAY) nextstate = IDLE;
         else nextstate = WAIT;
       default: nextstate = IDLE;
     endcase
