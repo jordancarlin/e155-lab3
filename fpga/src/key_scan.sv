@@ -10,7 +10,8 @@ module key_scan #(parameter DELAY = 100) (
 );
 
   // Internal logic
-  logic [31:0] delay;
+  logic [31:0] counter;
+  logic        delayed, clearCounter;
 
   // FSM states
   typedef enum logic [3:0] { IDLE, R0, R1, R2, R3, PRESSED, WAIT } statetype;
@@ -38,26 +39,33 @@ module key_scan #(parameter DELAY = 100) (
         else nextstate = R0;
       PRESSED: nextstate = WAIT;
       WAIT:
-        if (delay >= DELAY) nextstate = IDLE;
+        if (counter >= DELAY) nextstate = IDLE;
         else nextstate = WAIT;
       default: nextstate = IDLE;
     endcase
 
-    // Output logic
-    always_comb begin
-      rows = '0;
-      newNum = 0;
-      /* verilator lint_off CASEINCOMPLETE */
-      case(state)
-        IDLE: delay = 0;
-        R0: rows = 4'b0001;
-        R1: rows = 4'b0010;
-        R2: rows = 4'b0100;
-        R3: rows = 4'b1000;
-        PRESSED: newNum = 1;
-        WAIT: delay += 1;
-      endcase
-      /* verilator lint_on CASEINCOMPLETE */
-    end
+  // Output logic
+  always_comb begin
+    rows = '0;
+    newNum = 0;
+    delayed = 0;
+    clearCounter = 0;
+    /* verilator lint_off CASEINCOMPLETE */
+    case(state)
+      IDLE:    clearCounter = 1;
+      R0:      rows = 4'b0001;
+      R1:      rows = 4'b0010;
+      R2:      rows = 4'b0100;
+      R3:      rows = 4'b1000;
+      PRESSED: newNum = 1;
+      WAIT:    delayed = 1;
+    endcase
+    /* verilator lint_on CASEINCOMPLETE */
+  end
+
+  // Counter for delay
+  always_ff @(posedge clk)
+    if (reset | clearCounter) counter <= 0;
+    else if (delayed) counter <= counter + 1;
 
 endmodule
