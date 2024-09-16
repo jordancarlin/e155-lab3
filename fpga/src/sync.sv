@@ -11,7 +11,7 @@ module sync #(parameter WIDTH=4) (
   logic [WIDTH-1:0] sync1;
 
   always_ff @(posedge clk) begin
-    if (reset) begin
+    if (~reset) begin
       sync1  <= '0;
       synced <= '0;
     end else begin

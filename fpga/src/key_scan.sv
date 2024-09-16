@@ -18,7 +18,7 @@ module key_scan #(parameter DELAY = 100) (
   statetype state, nextstate;
 
   always_ff @( posedge clk )
-    if (reset) state <= IDLE;
+    if (~reset) state <= IDLE;
     else       state <= nextstate;
 
   // Next state logic
@@ -65,7 +65,7 @@ module key_scan #(parameter DELAY = 100) (
 
   // Counter for delay
   always_ff @(posedge clk)
-    if (reset | clearCounter) counter <= 0;
+    if (~reset | clearCounter) counter <= 0;
     else if (delayed) counter <= counter + 1;
 
 endmodule
