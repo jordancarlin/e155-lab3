@@ -17,14 +17,14 @@ module top (
 
   // Read keypad
   sync sync(.clk, .reset, .async(cols), .synced(syncedCols));
-  key_scan key_scan(.clk, .reset, .cols, .rows, .newNum);
+  key_scan key_scan(.clk, .reset, .cols(syncedCols), .rows, .newNum);
 
   // Determine number based on which key is pressed
   key_decoder key_decoder(.rows, .cols(syncedCols), .num);
 
   // Hold numbers until new number pressed and shift old number
   always_ff @(posedge clk) begin
-    if (reset) begin
+    if (~reset) begin
       num0 <= '0;
       num1 <= '0;
     end else if (newNum) begin
