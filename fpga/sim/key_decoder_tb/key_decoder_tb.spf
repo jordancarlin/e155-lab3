@@ -1,0 +1,9 @@
+<RadiantSimulationProject stage="0" name="key_decoder_tb" simType="QuestaSim Qrun" language="1" version="2.0" path="../sim">
+    <Source worklib="work" type="VERILOG" include="none" langstandard="System Verilog" path="../src/key_decoder.sv"/>
+    <Source worklib="work" type="VERILOG" include="none" langstandard="System Verilog" path="../testbench/key_decoder_tb.sv"/>
+    <SimLib value="pmi_work ovi_ice40up"/>
+    <GlbInc value=""/>
+    <Macro value=""/>
+    <Udo value=""/>
+    <TopModule name="key_decoder_tb" language="VERILOG" instance=""/>
+</RadiantSimulationProject>
