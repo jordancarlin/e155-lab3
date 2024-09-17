@@ -2,7 +2,7 @@
 // Jordan Carlin, jcarlin@hmc.edu, 15 September 2024
 // Matrix keypad scanner
 
-module key_scan #(parameter DELAY = 20, parameter DEBOUNCE=10) (
+module key_scan #(parameter DELAY = 200, parameter DEBOUNCE=20) (
   input  logic       clk, reset,
   input  logic [3:0] cols,
   output logic       newNum,
@@ -19,11 +19,12 @@ module key_scan #(parameter DELAY = 20, parameter DEBOUNCE=10) (
   typedef enum logic [2:0] { IDLE, R0, R1, R2, R3, POSSIBLE_PRESSED, PRESSED, WAIT } statetype;
   statetype state, nextstate;
 
-  always_ff @( posedge clk ) begin
+  always_ff @( posedge clk, negedge reset)
     if (~reset) state <= IDLE;
     else state <= nextstate;
-    if (rowChange) rows <= newRows;
-  end
+  always_ff @(posedge clk, negedge reset)
+    if (~reset) rows <= '0;
+    else if	(rowChange) rows <= newRows;
 
   // Next state logic
   always_comb
@@ -45,9 +46,7 @@ module key_scan #(parameter DELAY = 20, parameter DEBOUNCE=10) (
         if (counter >= DEBOUNCE & |cols) nextstate = PRESSED;
         else if (|cols) nextstate = POSSIBLE_PRESSED;
         else nextstate = IDLE;
-      PRESSED:
-        if (|cols) nextstate = PRESSED;
-        else nextstate = WAIT;
+      PRESSED: nextstate = WAIT;
       WAIT:
         if (|cols) nextstate = WAIT;
         else if (counter >= DELAY) nextstate = IDLE;

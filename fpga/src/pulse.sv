@@ -16,7 +16,7 @@ module pulse #(parameter THRESHOLD = 1000) (
   counter #(THRESHOLD) counter(.clk, .reset, .clk_stb);
 
   // Toggle the LED when the counter reaches the threshold
-  always_ff @(posedge clk)
+  always_ff @(posedge clk, negedge reset)
     if (~reset) begin
       disp0 <= 0;
       numOut <= '0;
