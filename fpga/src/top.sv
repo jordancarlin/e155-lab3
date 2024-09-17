@@ -41,7 +41,7 @@ module top (
   end
 
   // Toggle active display
-  pulse #(100) pulse(.clk(fsm_clk), .reset, .num0, .num1, .numOut, .disp0, .disp1);
+  pulse #(50) pulse(.clk(fsm_clk), .reset, .num0, .num1, .numOut, .disp0, .disp1);
 
   // Seven-segment display decoder
   seg_decoder seg_decoder(.num(numOut), .segs);
