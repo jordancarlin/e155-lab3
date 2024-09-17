@@ -55,7 +55,7 @@ module key_scan #(parameter DELAY = 20, parameter DEBOUNCE=10) (
   always_comb begin
     newRows = '0;
     newNum = 0;
-    incCounte = 0;
+    incCount = 0;
     clearCounter = 0;
     rowChange = 0;
     /* verilator lint_off CASEINCOMPLETE */
@@ -77,9 +77,9 @@ module key_scan #(parameter DELAY = 20, parameter DEBOUNCE=10) (
         newRows = 4'b1000;
         rowChange = 1;
       end
-      POSSIBLE_PRESSED: incCounter = 1;
+      POSSIBLE_PRESSED: incCount = 1;
       PRESSED: newNum = 1;
-      WAIT:    incCounter = 1;
+      WAIT:    incCount = 1;
     endcase
     /* verilator lint_on CASEINCOMPLETE */
   end
@@ -87,6 +87,6 @@ module key_scan #(parameter DELAY = 20, parameter DEBOUNCE=10) (
   // Counter for delay
   always_ff @(posedge clk)
     if (clearCounter) counter <= 0;
-    else if (incCounte) counter <= counter + 1;
+    else if (incCount) counter <= counter + 1;
 
 endmodule
