@@ -9,23 +9,20 @@ module pulse #(parameter THRESHOLD = 1000) (
   output logic       disp0, disp1
 );
 
-  logic        ck_stb;
-  logic [31:0] counter;
+  // Internal signals
+  logic clk_stb;
 
-  // Generate slower clock signal
-  always_ff @(posedge clk)
-    ck_stb <= (counter == THRESHOLD-1'b1);
+  // generate slower clock signal
+  counter #(THRESHOLD) counter(.clk, .reset, .clk_stb);
 
   // Toggle the LED when the counter reaches the threshold
-  always_ff @(posedge clk) begin
-    if (~reset)
+  always_ff @(posedge clk)
+    if (~reset) begin
       disp0 <= 0;
-    else if (ck_stb) begin
+      numOut <= '0;
+    end else if (clk_stb) begin
       disp0 <= ~disp0;
       numOut <= disp0 ? num0 : num1;
-      counter <= 0;
-    end else
-      counter <= counter + 1;
   end
 
   // Only one display should be active
