@@ -8,7 +8,8 @@ module top (
   output logic [3:0] rows,
   output logic [6:0] segs,
   output logic       disp0, disp1,
-  output logic       newNum
+  output logic       newNum,
+  output logic       idle, pressed
 );
 
   // Internal logic
@@ -22,7 +23,7 @@ module top (
 
   // Read keypad
   sync sync(.clk(fsm_clk), .reset, .async(cols), .synced(syncedCols));
-  key_scan key_scan(.clk(fsm_clk), .reset, .cols(syncedCols), .rows, .newNum);
+  key_scan key_scan(.clk(fsm_clk), .reset, .cols(syncedCols), .rows, .newNum, .idle, .pressed);
   // key_scan key_scan(.clk, .cols, .rows, .newNum);
 
 
@@ -31,7 +32,7 @@ module top (
   // key_decoder key_decoder(.rows, .cols, .num);
 
   // Hold numbers until new number pressed and shift old number
-  always_ff @(posedge fsm_clk) begin
+  always_ff @(posedge fsm_clk, negedge reset) begin
     if (~reset) begin
       num0 <= '0;
       num1 <= '0;

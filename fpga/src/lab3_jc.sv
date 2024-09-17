@@ -8,9 +8,8 @@ module lab3_jc (
   output logic [3:0] invertedRows,
   output logic [6:0] segs,
   output logic       disp0, disp1,
-  output logic       newNum
+  output logic       newNum, idle, pressed, outCols
 );
-
     logic       clk;
     logic [3:0] cols, rows;
 	// Internal high-speed oscillator
@@ -19,6 +18,7 @@ module lab3_jc (
 	// Use active low so internal pull-up resistors can be used
     assign cols = ~invertedCols;
     assign invertedRows = ~rows;
+	assign outCols = |cols;
 
 	// Main verilog module
 	top top (.*);

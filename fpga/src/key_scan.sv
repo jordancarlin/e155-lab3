@@ -6,7 +6,8 @@ module key_scan #(parameter DELAY = 20, parameter DEBOUNCE=10) (
   input  logic       clk, reset,
   input  logic [3:0] cols,
   output logic       newNum,
-  output logic [3:0] rows
+  output logic [3:0] rows,
+  output logic       idle, pressed
 );
 
   // Internal logic
@@ -92,4 +93,7 @@ module key_scan #(parameter DELAY = 20, parameter DEBOUNCE=10) (
     if (clearCounter) counter <= 0;
     else if (incCount) counter <= counter + 1;
 
+	assign idle = (state == R0) | (state == R1) | (state == R2) | (state == R3);
+	assign pressed = (state == PRESSED);
+	
 endmodule
