@@ -7,12 +7,13 @@ module top (
   input  logic [3:0] cols,
   output logic [3:0] rows,
   output logic [6:0] segs,
-  output logic       disp0, disp1
+  output logic       disp0, disp1,
+  output logic       newNum
 );
 
   // Internal logic
   logic       fsm_clk;
-  logic       newNum;
+  // logic       newNum;
   logic [3:0] syncedCols;
   logic [3:0] num, num0, num1, numOut;
 
