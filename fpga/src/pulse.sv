@@ -3,7 +3,7 @@
 // Pulse module that toggles outputs based on a configuirable frequency signal
 
 module pulse #(parameter THRESHOLD = 1000) (
-  input  logic       clk,
+  input  logic       clk, reset,
   input  logic [3:0] num0, num1,
   output logic [3:0] numOut,
   output logic       disp0, disp1
@@ -18,7 +18,9 @@ module pulse #(parameter THRESHOLD = 1000) (
 
   // Toggle the LED when the counter reaches the threshold
   always_ff @(posedge clk) begin
-    if (ck_stb) begin
+    if (~reset)
+      disp0 <= 0;
+    else if (ck_stb) begin
       disp0 <= ~disp0;
       numOut <= disp0 ? num0 : num1;
       counter <= 0;

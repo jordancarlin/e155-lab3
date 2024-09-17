@@ -1,0 +1,210 @@
+m255
+K4
+z2
+!s11f vlog 2021.4 2021.10, Oct 14 2021
+!s112 1.1
+!i10d 8192
+!i10e 25
+!i10f 100
+cModel Technology
+Z0 dC:/lscc/radiant/3.2/modeltech/win32loem
+vkey_decoder
+Z1 DXx6 sv_std 3 std 0 22 VYECXdT12H8WgbUP_5Y6:3
+Z2 !s110 1726551133
+!i10b 1
+!s100 3CNW[Zh:KY5kazcO?h?ke1
+I>zlESEAA7Ifc1Qm=MHWNR0
+S1
+R0
+Z3 w1726542843
+8C:/Users/jcarlin/Documents/GitHub/e155-lab3/fpga/src/key_decoder.sv
+FC:/Users/jcarlin/Documents/GitHub/e155-lab3/fpga/src/key_decoder.sv
+!i122 16
+L0 5 43
+Z4 VDg1SIo80bB@j0V0VzS_@n1
+Z5 OT;L;2021.4;73
+r1
+!s85 0
+31
+Z6 !s108 1726551133.000000
+!s107 C:/Users/jcarlin/Documents/GitHub/e155-lab3/fpga/src/key_decoder.sv|
+!s90 -reportprogress|300|-work|work|C:/Users/jcarlin/Documents/GitHub/e155-lab3/fpga/src/key_decoder.sv|
+!s101 -O0
+!i113 1
+Z7 o-work work -O0
+Z8 tCvgOpt 0
+vkey_scan
+R1
+R2
+!i10b 1
+!s100 n?en]FOz^oI<Y:4jUV0fO1
+IPE`];;=H>^iD:VY>OVHAC3
+S1
+R0
+w1726549148
+8C:/Users/jcarlin/Documents/GitHub/e155-lab3/fpga/src/key_scan.sv
+FC:/Users/jcarlin/Documents/GitHub/e155-lab3/fpga/src/key_scan.sv
+!i122 17
+L0 5 87
+R4
+R5
+r1
+!s85 0
+31
+R6
+!s107 C:/Users/jcarlin/Documents/GitHub/e155-lab3/fpga/src/key_scan.sv|
+!s90 -reportprogress|300|-work|work|C:/Users/jcarlin/Documents/GitHub/e155-lab3/fpga/src/key_scan.sv|
+!s101 -O0
+!i113 1
+R7
+R8
+vlab3_jc
+R1
+R2
+!i10b 1
+!s100 Pn7jege_cKYhGN2hPII3T2
+Ieff5V]cEVPTjNkV4zF^bK2
+S1
+R0
+w1726548978
+8C:/Users/jcarlin/Documents/GitHub/e155-lab3/fpga/src/lab3_jc.sv
+FC:/Users/jcarlin/Documents/GitHub/e155-lab3/fpga/src/lab3_jc.sv
+!i122 18
+L0 5 20
+R4
+R5
+r1
+!s85 0
+31
+R6
+!s107 C:/Users/jcarlin/Documents/GitHub/e155-lab3/fpga/src/lab3_jc.sv|
+!s90 -reportprogress|300|-work|work|C:/Users/jcarlin/Documents/GitHub/e155-lab3/fpga/src/lab3_jc.sv|
+!s101 -O0
+!i113 1
+R7
+R8
+vlab3_tb
+R1
+!s110 1726551126
+!i10b 1
+!s100 F<hiRSY71IR>Tafo=a45g0
+IRDZdY>E<2c?emfQ8e=gWi3
+S1
+R0
+w1726551027
+8C:/Users/jcarlin/Documents/GitHub/e155-lab3/fpga/testbench/lab3_tb.sv
+FC:/Users/jcarlin/Documents/GitHub/e155-lab3/fpga/testbench/lab3_tb.sv
+!i122 8
+L0 9 44
+R4
+R5
+r1
+!s85 0
+31
+!s108 1726551126.000000
+!s107 C:/Users/jcarlin/Documents/GitHub/e155-lab3/fpga/testbench/lab3_tb.sv|
+!s90 -reportprogress|300|-work|work|C:/Users/jcarlin/Documents/GitHub/e155-lab3/fpga/testbench/lab3_tb.sv|
+!s101 -O0
+!i113 1
+R7
+R8
+vpulse
+R1
+R2
+!i10b 1
+!s100 KA8R8?fSX7z3bB2=QOYVL3
+I1ckV6gXVCA?dZBm_?a]9V0
+S1
+R0
+w1726551115
+8C:/Users/jcarlin/Documents/GitHub/e155-lab3/fpga/src/pulse.sv
+FC:/Users/jcarlin/Documents/GitHub/e155-lab3/fpga/src/pulse.sv
+!i122 19
+L0 5 29
+R4
+R5
+r1
+!s85 0
+31
+R6
+!s107 C:/Users/jcarlin/Documents/GitHub/e155-lab3/fpga/src/pulse.sv|
+!s90 -reportprogress|300|-work|work|C:/Users/jcarlin/Documents/GitHub/e155-lab3/fpga/src/pulse.sv|
+!s101 -O0
+!i113 1
+R7
+R8
+vseg_decoder
+R1
+R2
+!i10b 1
+!s100 HQnloAAV64Y@jeG1SWE951
+I>iWY[[ZQ524loFa:D;^D62
+S1
+R0
+w1726550985
+8C:/Users/jcarlin/Documents/GitHub/e155-lab3/fpga/src/seg_decoder.sv
+FC:/Users/jcarlin/Documents/GitHub/e155-lab3/fpga/src/seg_decoder.sv
+!i122 20
+L0 5 31
+R4
+R5
+r1
+!s85 0
+31
+R6
+!s107 C:/Users/jcarlin/Documents/GitHub/e155-lab3/fpga/src/seg_decoder.sv|
+!s90 -reportprogress|300|-work|work|C:/Users/jcarlin/Documents/GitHub/e155-lab3/fpga/src/seg_decoder.sv|
+!s101 -O0
+!i113 1
+R7
+R8
+vsync
+R1
+R2
+!i10b 1
+!s100 ^nTK^WEYfd_JbEDMUcE7P2
+If?[g]f^AHX=X9<nzReN@c3
+S1
+R0
+R3
+8C:/Users/jcarlin/Documents/GitHub/e155-lab3/fpga/src/sync.sv
+FC:/Users/jcarlin/Documents/GitHub/e155-lab3/fpga/src/sync.sv
+!i122 21
+L0 5 19
+R4
+R5
+r1
+!s85 0
+31
+R6
+!s107 C:/Users/jcarlin/Documents/GitHub/e155-lab3/fpga/src/sync.sv|
+!s90 -reportprogress|300|-work|work|C:/Users/jcarlin/Documents/GitHub/e155-lab3/fpga/src/sync.sv|
+!s101 -O0
+!i113 1
+R7
+R8
+vtop
+R1
+R2
+!i10b 1
+!s100 cRNF:04F4=cO?dVXc`7ZY3
+IjMd_B4;eYMH;56XAUF3i]2
+S1
+R0
+w1726551046
+8C:/Users/jcarlin/Documents/GitHub/e155-lab3/fpga/src/top.sv
+FC:/Users/jcarlin/Documents/GitHub/e155-lab3/fpga/src/top.sv
+!i122 22
+L0 5 40
+R4
+R5
+r1
+!s85 0
+31
+R6
+!s107 C:/Users/jcarlin/Documents/GitHub/e155-lab3/fpga/src/top.sv|
+!s90 -reportprogress|300|-work|work|C:/Users/jcarlin/Documents/GitHub/e155-lab3/fpga/src/top.sv|
+!s101 -O0
+!i113 1
+R7
+R8

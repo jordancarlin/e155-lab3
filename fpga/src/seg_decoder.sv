@@ -27,6 +27,7 @@ module seg_decoder(
       4'b1101: segs_inverted = 7'b1011110; // D
       4'b1110: segs_inverted = 7'b1111001; // E
       4'b1111: segs_inverted = 7'b1110001; // F
+      default: segs_inverted = 7'b0111111; // 0
     endcase
     // switch for commond anode
     segs = ~segs_inverted;

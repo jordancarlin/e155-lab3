@@ -11,21 +11,26 @@ module top (
 );
 
   // Internal logic
+  logic       fsm_clk;
   logic       newNum;
   logic [3:0] syncedCols;
   logic [3:0] num, num0, num1, numOut;
 
+  // slow clock for fsm
+  counter #(4800) counter(.clk, .reset, .clk_stb(fsm_clk));
+
   // Read keypad
-  sync sync(.clk, .reset, .async(cols), .synced(syncedCols));
-  key_scan key_scan(.clk, .reset, .cols(syncedCols), .rows, .newNum);
+  sync sync(.clk(fsm_clk), .reset, .async(cols), .synced(syncedCols));
+  key_scan key_scan(.clk(fsm_clk), .reset, .cols(syncedCols), .rows, .newNum);
   // key_scan key_scan(.clk, .cols, .rows, .newNum);
+
 
   // Determine number based on which key is pressed
   key_decoder key_decoder(.rows, .cols(syncedCols), .num);
   // key_decoder key_decoder(.rows, .cols, .num);
 
   // Hold numbers until new number pressed and shift old number
-  always_ff @(posedge clk) begin
+  always_ff @(posedge fsm_clk) begin
     if (~reset) begin
       num0 <= '0;
       num1 <= '0;
@@ -36,7 +41,7 @@ module top (
   end
 
   // Toggle active display
-  pulse #(100000) pulse(.clk, .num0, .num1, .numOut, .disp0, .disp1);
+  pulse #(100) pulse(.clk(fsm_clk), .reset, .num0, .num1, .numOut, .disp0, .disp1);
 
   // Seven-segment display decoder
   seg_decoder seg_decoder(.num(numOut), .segs);
