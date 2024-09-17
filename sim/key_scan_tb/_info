@@ -11,23 +11,23 @@ cModel Technology
 dC:/lscc/radiant/3.2/modeltech/win32loem
 vkey_decoder
 Z0 DXx6 sv_std 3 std 0 22 VYECXdT12H8WgbUP_5Y6:3
-Z1 !s110 1726544288
-Z2 VDg1SIo80bB@j0V0VzS_@n1
-r1
-!s85 0
+Z1 !s110 1726548324
 !i10b 1
 !s100 3CNW[Zh:KY5kazcO?h?ke1
 I>zlESEAA7Ifc1Qm=MHWNR0
 S1
-Z3 dC:/Users/jcarlin/Documents/GitHub/e155-lab3/sim
-Z4 w1726542843
+Z2 dC:/Users/jcarlin/Documents/GitHub/e155-lab3/sim
+Z3 w1726542843
 8C:/Users/jcarlin/Documents/GitHub/e155-lab3/fpga/src/key_decoder.sv
 FC:/Users/jcarlin/Documents/GitHub/e155-lab3/fpga/src/key_decoder.sv
-!i122 0
+!i122 27
 L0 5 43
+Z4 VDg1SIo80bB@j0V0VzS_@n1
 Z5 OT;L;2021.4;73
+r1
+!s85 0
 31
-Z6 !s108 1726544288.000000
+Z6 !s108 1726548324.000000
 !s107 C:/Users/jcarlin/Documents/GitHub/e155-lab3/fpga/src/key_decoder.sv|
 !s90 -reportprogress|300|-work|work|C:/Users/jcarlin/Documents/GitHub/e155-lab3/fpga/src/key_decoder.sv|
 !s101 -O0
@@ -36,23 +36,23 @@ Z7 o-work work -O0
 Z8 tCvgOpt 0
 vkey_decoder_tb
 R0
-Z9 !s110 1726544298
-R2
+!s110 1726544298
+R4
 r1
 !s85 0
 !i10b 1
 !s100 _?72oZ6iTGd^o=SL^MEK=3
 IQWLHDH9;cBXX0AlY]AMhZ1
 S1
+R2
 R3
-R4
 8C:/Users/jcarlin/Documents/GitHub/e155-lab3/fpga/testbench/key_decoder_tb.sv
 FC:/Users/jcarlin/Documents/GitHub/e155-lab3/fpga/testbench/key_decoder_tb.sv
 !i122 9
-Z10 L0 9 44
+Z9 L0 9 44
 R5
 31
-Z11 !s108 1726544298.000000
+!s108 1726544298.000000
 !s107 C:/Users/jcarlin/Documents/GitHub/e155-lab3/fpga/testbench/key_decoder_tb.sv|
 !s90 -reportprogress|300|-work|work|C:/Users/jcarlin/Documents/GitHub/e155-lab3/fpga/testbench/key_decoder_tb.sv|
 !s101 -O0
@@ -61,23 +61,23 @@ R7
 R8
 vkey_scan
 R0
-!s110 1726547751
+R1
 !i10b 1
-!s100 ;D>nVPfAXhIgMN8Uc?NBf2
-ID9]AZKdIg:9i8GMTKA]A82
+!s100 P9dlVZWBXW80_15zNjSdb2
+IDUdjM=7aRHo^Tm8C>j87?0
 S1
-R3
-w1726547659
+R2
+w1726548289
 8C:/Users/jcarlin/Documents/GitHub/e155-lab3/fpga/src/key_scan.sv
 FC:/Users/jcarlin/Documents/GitHub/e155-lab3/fpga/src/key_scan.sv
-!i122 19
-L0 5 72
-R2
+!i122 28
+L0 5 87
+R4
 R5
 r1
 !s85 0
 31
-!s108 1726547751.000000
+R6
 !s107 C:/Users/jcarlin/Documents/GitHub/e155-lab3/fpga/src/key_scan.sv|
 !s90 -reportprogress|300|-work|work|C:/Users/jcarlin/Documents/GitHub/e155-lab3/fpga/src/key_scan.sv|
 !s101 -O0
@@ -86,23 +86,23 @@ R7
 R8
 vkey_scan_tb
 R0
-R9
-R2
-r1
-!s85 0
+!s110 1726548329
 !i10b 1
 !s100 Z7L[FXfB818A;Ml>6?TYn0
 INl@9_hfhUaL`Hn=Qb9iQM0
 S1
-R3
+R2
 w1726544152
 8C:/Users/jcarlin/Documents/GitHub/e155-lab3/fpga/testbench/key_scan_tb.sv
 FC:/Users/jcarlin/Documents/GitHub/e155-lab3/fpga/testbench/key_scan_tb.sv
-!i122 10
-R10
+!i122 34
+R9
+R4
 R5
+r1
+!s85 0
 31
-R11
+!s108 1726548329.000000
 !s107 C:/Users/jcarlin/Documents/GitHub/e155-lab3/fpga/testbench/key_scan_tb.sv|
 !s90 -reportprogress|300|-work|work|C:/Users/jcarlin/Documents/GitHub/e155-lab3/fpga/testbench/key_scan_tb.sv|
 !s101 -O0
@@ -112,20 +112,20 @@ R8
 vlab3_jc
 R0
 R1
-R2
-r1
-!s85 0
 !i10b 1
-!s100 T>;IbbThfoJWB?Aa4en3`2
-IF19eNQ2K9TdZn2dV1VQKG1
+!s100 Zoo;L`@Re[Xj=MdP;GhjX3
+IiF:B[XdMd^RG0nziY6V:[2
 S1
-R3
-R4
+R2
+w1726545992
 8C:/Users/jcarlin/Documents/GitHub/e155-lab3/fpga/src/lab3_jc.sv
 FC:/Users/jcarlin/Documents/GitHub/e155-lab3/fpga/src/lab3_jc.sv
-!i122 2
-L0 5 21
+!i122 29
+L0 5 20
+R4
 R5
+r1
+!s85 0
 31
 R6
 !s107 C:/Users/jcarlin/Documents/GitHub/e155-lab3/fpga/src/lab3_jc.sv|
@@ -137,20 +137,20 @@ R8
 vpulse
 R0
 R1
-R2
-r1
-!s85 0
 !i10b 1
 !s100 :Q4^8i4k`hH=>L6W5f`O<3
 IR[Ue_jHV>4?n3=UcIofJ_1
 S1
+R2
 R3
-R4
 8C:/Users/jcarlin/Documents/GitHub/e155-lab3/fpga/src/pulse.sv
 FC:/Users/jcarlin/Documents/GitHub/e155-lab3/fpga/src/pulse.sv
-!i122 3
+!i122 30
 L0 5 27
+R4
 R5
+r1
+!s85 0
 31
 R6
 !s107 C:/Users/jcarlin/Documents/GitHub/e155-lab3/fpga/src/pulse.sv|
@@ -162,20 +162,20 @@ R8
 vseg_decoder
 R0
 R1
-R2
-r1
-!s85 0
 !i10b 1
 !s100 @DgWiBhT5m:]z9a<71mKL2
 IN1E?3_ASeG=f0z00X<Ahn2
 S1
+R2
 R3
-R4
 8C:/Users/jcarlin/Documents/GitHub/e155-lab3/fpga/src/seg_decoder.sv
 FC:/Users/jcarlin/Documents/GitHub/e155-lab3/fpga/src/seg_decoder.sv
-!i122 4
+!i122 31
 L0 5 30
+R4
 R5
+r1
+!s85 0
 31
 R6
 !s107 C:/Users/jcarlin/Documents/GitHub/e155-lab3/fpga/src/seg_decoder.sv|
@@ -187,20 +187,20 @@ R8
 vsync
 R0
 R1
-R2
-r1
-!s85 0
 !i10b 1
 !s100 ^nTK^WEYfd_JbEDMUcE7P2
 If?[g]f^AHX=X9<nzReN@c3
 S1
+R2
 R3
-R4
 8C:/Users/jcarlin/Documents/GitHub/e155-lab3/fpga/src/sync.sv
 FC:/Users/jcarlin/Documents/GitHub/e155-lab3/fpga/src/sync.sv
-!i122 5
+!i122 32
 L0 5 19
+R4
 R5
+r1
+!s85 0
 31
 R6
 !s107 C:/Users/jcarlin/Documents/GitHub/e155-lab3/fpga/src/sync.sv|
@@ -211,21 +211,21 @@ R7
 R8
 vtop
 R0
-R1
-R2
-r1
-!s85 0
+!s110 1726548325
 !i10b 1
-!s100 1H]W_J`iJ?o4O:0Ke>`RS0
-ITH_VA>E0CZEc449>NUB]X2
+!s100 0UnRoKnP2fKRmKZiTC9T`1
+I@k>hC4AOD9fi;OZSbV]nU1
 S1
-R3
-R4
+R2
+w1726546030
 8C:/Users/jcarlin/Documents/GitHub/e155-lab3/fpga/src/top.sv
 FC:/Users/jcarlin/Documents/GitHub/e155-lab3/fpga/src/top.sv
-!i122 6
-L0 5 38
+!i122 33
+L0 5 41
+R4
 R5
+r1
+!s85 0
 31
 R6
 !s107 C:/Users/jcarlin/Documents/GitHub/e155-lab3/fpga/src/top.sv|

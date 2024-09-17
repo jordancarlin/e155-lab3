@@ -3,7 +3,7 @@
 // FPGA implementation for E155 Lab 3
 
 module lab3_jc (
-//   input  logic       reset,
+  input  logic       reset,
   input  logic [3:0] invertedCols,
   output logic [3:0] invertedRows,
   output logic [6:0] segs,
