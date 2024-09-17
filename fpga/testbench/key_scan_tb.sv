@@ -10,9 +10,9 @@ module key_scan_tb();
   // Set up test signals
   logic        clk, reset;
   logic [3:0]  cols, rows, rowsExpected;
-  logic        newNum, newNumExpected
-  logic [31:0] vectornum, errors;
-  logic [11:0] testvectors[10000:0]; // Vectors of format rows[3:0]_cols[3:0]_num[3:0]
+  logic        newNum, newNumExpected;
+  // logic [31:0] vectornum, errors;
+  // logic [11:0] testvectors[10000:0]; // Vectors of format rows[3:0]_cols[3:0]_num[3:0]
 
   // Instantiate the device under test
   key_scan dut(.*);
@@ -27,27 +27,26 @@ module key_scan_tb();
   //  - Load the testvectors
   //  - Pulse the reset line (if applicable)
   initial begin
-    $readmemb("/home/jcarlin/e155/e155-lab3/fpga/testbench/key_decoder_testvectors.tv", testvectors, 0, `N_TV - 1);
-    vectornum = 0; errors = 0;
+    cols = '0;
+    reset = 0; #22;
+    reset = 1; #100;
+    cols[0] = 1; #50;
+    cols[0] = 0; #100;
+    cols[1] = 1; #30;
+    cols[1] = 0; #100;
+    cols[2] = 1; #15;
+    cols[2] = 0; #100;
+    cols[3] = 1; #100;
+    cols[3] = 0; #100;
+    $stop
   end
 
-  // Apply test vector on the rising edge of clk
-  always @(posedge clk) begin
-    #1; {rows, cols, num_expected} <= testvectors[vectornum];
-  end
-
-  // Check results on the falling edge of clk
-  always @(negedge clk) begin
-    if (num !== num_expected) begin
-      $display("Error: inputs: rows=%b, cols=%b", rows, cols);
-      $display(" output: num=%b (%b expected)", num, num_expected);
-      errors <= errors + 1;
-    end
-
-    vectornum <= vectornum + 1;
-    if (testvectors[vectornum] === 12'bx) begin
-      $display("%d tests completed with %d errors.", vectornum, errors);
-      $stop;
-    end
-  end
+  // // Check results on the falling edge of clk
+  // always @(negedge clk) begin
+  //   if (num !== num_expected) begin
+  //     $display("Error: inputs: rows=%b, cols=%b", rows, cols);
+  //     $display(" output: num=%b (%b expected)", num, num_expected);
+  //     errors <= errors + 1;
+  //   end
+  // end
 endmodule
