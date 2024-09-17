@@ -38,7 +38,7 @@ module key_scan_tb();
     cols[2] = 0; #100;
     cols[3] = 1; #100;
     cols[3] = 0; #100;
-    $stop
+    $stop;
   end
 
   // // Check results on the falling edge of clk

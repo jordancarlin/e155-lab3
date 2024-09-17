@@ -2,8 +2,8 @@
 // Jordan Carlin, jcarlin@hmc.edu, 15 September 2024
 // Matrix keypad scanner
 
-module key_scan #(parameter DELAY = 100) (
-  input  logic       clk, reset,
+module key_scan #(parameter DELAY = 20) (
+  input  logic       clk, //reset,
   input  logic [3:0] cols,
   output logic       newNum,
   output logic [3:0] rows
@@ -14,12 +14,13 @@ module key_scan #(parameter DELAY = 100) (
   logic        delayed, clearCounter;
 
   // FSM states
-  typedef enum logic [3:0] { IDLE, R0, R1, R2, R3, PRESSED, WAIT } statetype;
+  typedef enum logic [2:0] { IDLE, R0, R1, R2, R3, PRESSED, WAIT } statetype;
   statetype state, nextstate;
 
   always_ff @( posedge clk )
-    if (~reset) state <= IDLE;
-    else       state <= nextstate;
+    // if (~reset) state <= IDLE;
+    //else
+	state <= nextstate;
 
   // Next state logic
   always_comb
@@ -58,7 +59,10 @@ module key_scan #(parameter DELAY = 100) (
       R1:      rows = 4'b0010;
       R2:      rows = 4'b0100;
       R3:      rows = 4'b1000;
-      PRESSED: newNum = 1;
+      PRESSED: begin
+                 newNum = 1;
+                 rows = rows;
+			         end
       WAIT:    delayed = 1;
     endcase
     /* verilator lint_on CASEINCOMPLETE */
@@ -66,7 +70,7 @@ module key_scan #(parameter DELAY = 100) (
 
   // Counter for delay
   always_ff @(posedge clk)
-    if (~reset | clearCounter) counter <= 0;
+    if ( clearCounter) counter <= 0;
     else if (delayed) counter <= counter + 1;
 
 endmodule

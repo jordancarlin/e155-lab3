@@ -3,8 +3,8 @@
 -reflib ovi_ice40up
 
 
-"/home/jcarlin/e155/e155-lab3/fpga/src/key_scan.sv" 
-"/home/jcarlin/e155/e155-lab3/fpga/testbench/key_scan_tb.sv" 
+"C:/Users/jcarlin/Documents/GitHub/e155-lab3/fpga/src/key_scan.sv" 
+"C:/Users/jcarlin/Documents/GitHub/e155-lab3/fpga/testbench/key_scan_tb.sv" 
 -sv
 -optionset VOPTDEBUG
 +noacc+pmi_work.*
@@ -22,4 +22,3 @@
 
 -do "view wave"
 -do "add wave /*"
--do "run 1000 ns"

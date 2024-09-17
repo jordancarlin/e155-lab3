@@ -1,9 +1,9 @@
-<RadiantSimulationProject name="key_scan_tb" simType="QuestaSim Qrun" version="2.0" stage="0" path="../sim" language="1">
-    <Source worklib="work" type="VERILOG" include="none" path="../src/key_scan.sv" langstandard="System Verilog"/>
-    <Source worklib="work" type="VERILOG" include="none" path="../testbench/key_scan_tb.sv" langstandard="System Verilog"/>
+<RadiantSimulationProject path="../sim" language="1" name="key_scan_tb" stage="0" version="2.0" simType="QuestaSim Qrun">
+    <Source include="none" path="../src/key_scan.sv" worklib="work" type="VERILOG" langstandard="System Verilog"/>
+    <Source include="none" path="../testbench/key_scan_tb.sv" worklib="work" type="VERILOG" langstandard="System Verilog"/>
     <SimLib value="pmi_work ovi_ice40up"/>
     <GlbInc value=""/>
     <Macro value=""/>
     <Udo value=""/>
-    <TopModule instance="" name="key_scan_tb" language="VERILOG"/>
+    <TopModule instance="" language="VERILOG" name="key_scan_tb"/>
 </RadiantSimulationProject>
