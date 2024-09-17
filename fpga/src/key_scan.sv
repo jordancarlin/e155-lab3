@@ -44,6 +44,9 @@ module key_scan #(parameter DELAY = 20, parameter DEBOUNCE=10) (
         if (counter >= DEBOUNCE & |cols) nextstate = PRESSED;
         else if (|cols) nextstate = POSSIBLE_PRESSED;
         else nextstate = IDLE;
+      PRESSED:
+        if (|cols) nextstate = PRESSED;
+        else nextstate = WAIT;
       WAIT:
         if (|cols) nextstate = WAIT;
         else if (counter >= DELAY) nextstate = IDLE;
