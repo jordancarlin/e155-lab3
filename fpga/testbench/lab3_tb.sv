@@ -2,30 +2,30 @@
 // Jordan Carlin, jcarlin@hmc.edu, 15 September 2024
 // Testbench for lab 3
 
-`timescale 1ns/1ns
+`timescale 1ns/100ps
 `default_nettype none
-`define N_TV 17
 
 module lab3_tb();
   // Set up test signals
+  `define HALF_PERIOD 10.4
+  /* verilator lint_off UNUSEDSIGNAL */
   logic       clk, reset;
   logic [3:0] cols;
   logic [3:0] rows;
   logic [6:0] segs;
   logic       disp0, disp1;
+  logic       newNum, idle, pressed, outCols;
+  /* verilator lint_on UNUSEDSIGNAL */
 
   // Instantiate the device under test
   top dut(.*);
 
-  // Generate clock signal with a period of 10 timesteps.
-  always begin
-    clk <= 1; #5;
-    clk <= 0; #5;
-  end
+  // Generate 48 MHz clock signal
+  initial clk = 0;
+  always #`HALF_PERIOD clk <= ~clk;
   
   // At the start of the simulation:
-  //  - Load the testvectors
-  //  - Pulse the reset line (if applicable)
+  //  - Pulse the reset line and apply tests values
   initial begin
     cols = '0;
     reset = 0; #22;

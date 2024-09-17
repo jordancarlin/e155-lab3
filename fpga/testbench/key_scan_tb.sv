@@ -2,17 +2,15 @@
 // Jordan Carlin, jcarlin@hmc.edu, 15 September 2024
 // Testbench for the matrix keypad scanner
 
-`timescale 1ns/1ns
+`timescale 1ns/100ps
 `default_nettype none
 `define N_TV 17
 
 module key_scan_tb();
   // Set up test signals
   logic        clk, reset;
-  logic [3:0]  cols, rows, rowsExpected;
-  logic        newNum, newNumExpected;
-  // logic [31:0] vectornum, errors;
-  // logic [11:0] testvectors[10000:0]; // Vectors of format rows[3:0]_cols[3:0]_num[3:0]
+  logic [3:0]  cols, rows;
+  logic        newNum;
 
   // Instantiate the device under test
   key_scan dut(.*);
@@ -41,12 +39,4 @@ module key_scan_tb();
     $stop;
   end
 
-  // // Check results on the falling edge of clk
-  // always @(negedge clk) begin
-  //   if (num !== num_expected) begin
-  //     $display("Error: inputs: rows=%b, cols=%b", rows, cols);
-  //     $display(" output: num=%b (%b expected)", num, num_expected);
-  //     errors <= errors + 1;
-  //   end
-  // end
 endmodule

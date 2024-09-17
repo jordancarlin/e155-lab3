@@ -16,9 +16,8 @@ module lab3_jc (
 	HSOSC hf_osc (.CLKHFPU(1'b1), .CLKHFEN(1'b1), .CLKHF(clk));
 
 	// Use active low so internal pull-up resistors can be used
-    assign cols = ~invertedCols;
-    assign invertedRows = ~rows;
-	assign outCols = |cols;
+  assign cols = ~invertedCols;
+  assign invertedRows = ~rows;
 
 	// Main verilog module
 	top top (.*);

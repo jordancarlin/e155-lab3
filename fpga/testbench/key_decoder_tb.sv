@@ -2,7 +2,7 @@
 // Jordan Carlin, jcarlin@hmc.edu, 15 September 2024
 // Testbench for the matrix keypad decoder
 
-`timescale 1ns/1ns
+`timescale 1ns/100ps
 `default_nettype none
 `define N_TV 17
 

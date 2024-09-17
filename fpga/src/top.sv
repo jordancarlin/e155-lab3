@@ -9,7 +9,7 @@ module top (
   output logic [6:0] segs,
   output logic       disp0, disp1,
   output logic       newNum,
-  output logic       idle, pressed
+  output logic       idle, pressed, outCols
 );
 
   // Internal logic
@@ -47,5 +47,7 @@ module top (
 
   // Seven-segment display decoder
   seg_decoder seg_decoder(.num(numOut), .segs);
+
+  assign outCols = |cols;
 
 endmodule
