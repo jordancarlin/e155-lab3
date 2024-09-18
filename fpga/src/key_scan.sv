@@ -2,12 +2,12 @@
 // Jordan Carlin, jcarlin@hmc.edu, 15 September 2024
 // Matrix keypad scanner
 
-module key_scan #(parameter DELAY = 200, parameter DEBOUNCE=20) (
+module key_scan #(parameter DELAY = 30, parameter DEBOUNCE=15) (
   input  logic       clk, reset,
   input  logic [3:0] cols,
   output logic       newNum,
   output logic [3:0] rows,
-  output logic       idle, pressed
+  output logic       scanning, waiting
 );
 
   // Internal logic
@@ -43,9 +43,10 @@ module key_scan #(parameter DELAY = 200, parameter DEBOUNCE=20) (
         if (|cols) nextstate = POSSIBLE_PRESSED;
         else nextstate = R0;
       POSSIBLE_PRESSED:
-        if (counter >= DEBOUNCE & |cols) nextstate = PRESSED;
-        else if (|cols) nextstate = POSSIBLE_PRESSED;
-        else nextstate = IDLE;
+        if (counter >= DEBOUNCE) 
+          if (|cols) nextstate = PRESSED;
+          else nextstate = IDLE;
+        else nextstate = POSSIBLE_PRESSED;
       PRESSED: nextstate = WAIT;
       WAIT:
         if (|cols) nextstate = WAIT;
@@ -92,7 +93,7 @@ module key_scan #(parameter DELAY = 200, parameter DEBOUNCE=20) (
     if (clearCounter) counter <= 0;
     else if (incCount) counter <= counter + 1;
 
-	assign idle = (state == R0) | (state == R1) | (state == R2) | (state == R3);
-	assign pressed = (state == PRESSED);
+	assign scanning = (state == R0) | (state == R1) | (state == R2) | (state == R3);
+	assign waiting = 1;//(state == WAIT);
 	
 endmodule

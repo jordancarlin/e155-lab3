@@ -9,7 +9,7 @@ module top (
   output logic [6:0] segs,
   output logic       disp0, disp1,
   output logic       newNum,
-  output logic       idle, pressed, outCols
+  output logic       scanning, waiting, outCols
 );
 
   // Internal logic
@@ -23,7 +23,7 @@ module top (
 
   // Read keypad
   // sync sync(.clk(fsm_clk), .reset, .async(cols), .synced(syncedCols));
-  key_scan key_scan(.clk(fsm_clk), .reset, .cols, .rows, .newNum, .idle, .pressed);
+  key_scan key_scan(.clk(fsm_clk), .reset, .cols, .rows, .newNum, .scanning, .waiting);
   // key_scan key_scan(.clk, .cols, .rows, .newNum);
 
 

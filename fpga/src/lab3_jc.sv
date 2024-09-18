@@ -8,7 +8,7 @@ module lab3_jc (
   output logic [3:0] invertedRows,
   output logic [6:0] segs,
   output logic       disp0, disp1,
-  output logic       newNum, idle, pressed, outCols
+  output logic       newNum, scanning, waiting, outCols
 );
     logic       clk;
     logic [3:0] cols, rows;
