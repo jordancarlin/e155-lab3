@@ -2,7 +2,7 @@
 // Jordan Carlin, jcarlin@hmc.edu, 15 September 2024
 // Matrix keypad scanner
 
-module key_scan #(parameter DELAY = 30, parameter DEBOUNCE=15) (
+module key_scan #(parameter DELAY = 3000, parameter DEBOUNCE=15) (
   input  logic       clk, reset,
   input  logic [3:0] cols,
   output logic       newNum,
@@ -22,6 +22,7 @@ module key_scan #(parameter DELAY = 30, parameter DEBOUNCE=15) (
   always_ff @( posedge clk, negedge reset)
     if (~reset) state <= IDLE;
     else state <= nextstate;
+  
   always_ff @(posedge clk, negedge reset)
     if (~reset) rows <= '0;
     else if	(rowChange) rows <= newRows;
@@ -65,19 +66,19 @@ module key_scan #(parameter DELAY = 30, parameter DEBOUNCE=15) (
     /* verilator lint_off CASEINCOMPLETE */
     case(state)
       IDLE:    clearCounter = 1;
-      R0:      begin
+      R1:      begin
         newRows = 4'b0001;
         rowChange = 1;
       end
-      R1:      begin
+      R2:      begin
         newRows = 4'b0010;
         rowChange = 1;
       end
-      R2:      begin
+      R3:      begin
         newRows = 4'b0100;
         rowChange = 1;
       end
-      R3:      begin
+      R0:      begin
         newRows = 4'b1000;
         rowChange = 1;
       end
@@ -94,6 +95,6 @@ module key_scan #(parameter DELAY = 30, parameter DEBOUNCE=15) (
     else if (incCount) counter <= counter + 1;
 
 	assign scanning = (state == R0) | (state == R1) | (state == R2) | (state == R3);
-	assign waiting = 1;//(state == WAIT);
+	assign waiting = (state == WAIT);
 	
 endmodule
