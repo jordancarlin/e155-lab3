@@ -14,22 +14,20 @@ module top (
 
   // Internal logic
   logic       fsm_clk;
-  // logic       newNum;
-  // logic [3:0] syncedCols;
+  logic [3:0] syncedCols;
   logic [3:0] num, num0, num1, numOut;
 
   // slow clock for fsm
   counter #(4800) counter(.clk, .reset, .clk_stb(fsm_clk));
 
   // Read keypad
-  // sync sync(.clk(fsm_clk), .reset, .async(cols), .synced(syncedCols));
-  key_scan key_scan(.clk(fsm_clk), .reset, .cols, .rows, .newNum, .scanning, .waiting);
-  // key_scan key_scan(.clk, .cols, .rows, .newNum);
+  sync sync(.clk(fsm_clk), .reset, .async(cols), .synced(syncedCols));
+  // sync delayRows(.clk(fsm_clk), .reset, .async(syncedRows), .synced(rows));
+  key_scan key_scan(.clk(fsm_clk), .reset, .cols(syncedCols), .rows, .newNum, .scanning, .waiting);
 
 
   // Determine number based on which key is pressed
-  key_decoder key_decoder(.rows, .cols, .num);
-  // key_decoder key_decoder(.rows, .cols, .num);
+  key_decoder key_decoder(.rows, .cols(syncedCols), .num);
 
   // Hold numbers until new number pressed and shift old number
   always_ff @(posedge fsm_clk, negedge reset) begin

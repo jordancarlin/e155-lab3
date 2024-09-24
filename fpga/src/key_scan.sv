@@ -2,7 +2,7 @@
 // Jordan Carlin, jcarlin@hmc.edu, 15 September 2024
 // Matrix keypad scanner
 
-module key_scan #(parameter DELAY = 3000, parameter DEBOUNCE=15) (
+module key_scan #(parameter DELAY = 300, parameter DEBOUNCE=15, parameter SYNC_DELAY = 2) (
   input  logic       clk, reset,
   input  logic [3:0] cols,
   output logic       newNum,
@@ -34,19 +34,23 @@ module key_scan #(parameter DELAY = 3000, parameter DEBOUNCE=15) (
       R0: nextstate = R0_CHECK;
       R0_CHECK:
         if (|cols) nextstate = POSSIBLE_PRESSED;
-        else nextstate = R1;
+        else if (counter >= SYNC_DELAY) nextstate = R1;
+        else nextstate = R0_CHECK;
       R1: nextstate = R1_CHECK;
       R1_CHECK:
         if (|cols) nextstate = POSSIBLE_PRESSED;
-        else nextstate = R2;
+        else if (counter >= SYNC_DELAY) nextstate = R2;
+        else nextstate = R1_CHECK;
       R2: nextstate = R2_CHECK;
       R2_CHECK:
         if (|cols) nextstate = POSSIBLE_PRESSED;
-        else nextstate = R3;
+        else if (counter >= SYNC_DELAY) nextstate = R3;
+        else nextstate = R2_CHECK;
       R3: nextstate = R3_CHECK;
       R3_CHECK:
         if (|cols) nextstate = POSSIBLE_PRESSED;
-        else nextstate = R0;
+        else if (counter >= SYNC_DELAY) nextstate = R0;
+        else nextstate = R3_CHECK;
       POSSIBLE_PRESSED:
         if (counter >= DEBOUNCE) 
           if (|cols) nextstate = PRESSED;
@@ -73,19 +77,27 @@ module key_scan #(parameter DELAY = 3000, parameter DEBOUNCE=15) (
       R0:      begin
         newRows = 4'b0001;
         rowChange = 1;
+        clearCounter = 1;
       end
       R1:      begin
         newRows = 4'b0010;
         rowChange = 1;
+        clearCounter = 1;
       end
       R2:      begin
         newRows = 4'b0100;
         rowChange = 1;
+        clearCounter = 1;
       end
       R3:      begin
         newRows = 4'b1000;
         rowChange = 1;
+        clearCounter = 1;
       end
+      R0_CHECK: incCount = 1;
+      R1_CHECK: incCount = 1;
+      R2_CHECK: incCount = 1;
+      R3_CHECK: incCount = 1;
       POSSIBLE_PRESSED: incCount = 1;
       PRESSED: newNum = 1;
       WAIT:    incCount = 1;
