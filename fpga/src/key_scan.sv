@@ -16,7 +16,7 @@ module key_scan #(parameter DELAY = 3000, parameter DEBOUNCE=15) (
   logic [3:0]  newRows;
 
   // FSM states
-  typedef enum logic [2:0] { IDLE, R0, R1, R2, R3, POSSIBLE_PRESSED, PRESSED, WAIT } statetype;
+  typedef enum logic [3:0] { IDLE, R0, R1, R2, R3, R0_CHECK, R1_CHECK, R2_CHECK, R3_CHECK, POSSIBLE_PRESSED, PRESSED, WAIT } statetype;
   statetype state, nextstate;
 
   always_ff @( posedge clk, negedge reset)
@@ -31,16 +31,20 @@ module key_scan #(parameter DELAY = 3000, parameter DEBOUNCE=15) (
   always_comb
     case(state)
       IDLE: nextstate = R0;
-      R0:
+      R0: nextstate = R0_CHECK;
+      R0_CHECK:
         if (|cols) nextstate = POSSIBLE_PRESSED;
         else nextstate = R1;
-      R1:
+      R1: nextstate = R1_CHECK;
+      R1_CHECK:
         if (|cols) nextstate = POSSIBLE_PRESSED;
         else nextstate = R2;
-      R2:
+      R2: nextstate = R2_CHECK;
+      R2_CHECK:
         if (|cols) nextstate = POSSIBLE_PRESSED;
         else nextstate = R3;
-      R3:
+      R3: nextstate = R3_CHECK;
+      R3_CHECK:
         if (|cols) nextstate = POSSIBLE_PRESSED;
         else nextstate = R0;
       POSSIBLE_PRESSED:
@@ -66,19 +70,19 @@ module key_scan #(parameter DELAY = 3000, parameter DEBOUNCE=15) (
     /* verilator lint_off CASEINCOMPLETE */
     case(state)
       IDLE:    clearCounter = 1;
-      R1:      begin
+      R0:      begin
         newRows = 4'b0001;
         rowChange = 1;
       end
-      R2:      begin
+      R1:      begin
         newRows = 4'b0010;
         rowChange = 1;
       end
-      R3:      begin
+      R2:      begin
         newRows = 4'b0100;
         rowChange = 1;
       end
-      R0:      begin
+      R3:      begin
         newRows = 4'b1000;
         rowChange = 1;
       end
