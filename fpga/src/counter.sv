@@ -1,6 +1,6 @@
 // counter.sv
 // Jordan Carlin, jcarlin@hmc.edu, 16 September 2024
-// Counter for configurable output speed signal
+// Counter for configurable output frequency signal
 
 module counter #(parameter THRESHOLD = 1000) (
   input  logic  clk, reset,
@@ -9,11 +9,11 @@ module counter #(parameter THRESHOLD = 1000) (
 
   logic [31:0] count;
 
-//   // Generate slower clock signal
+  // Toggle the slow clock when the counter reaches the threshold
   always_ff @(posedge clk)
     clk_stb <= (count == THRESHOLD-1'b1);
 
-  // Toggle the slow clock when the counter reaches the threshold
+  // Counter to generate slower clock
   always_ff @(posedge clk, negedge reset) begin
     if (~reset | clk_stb)
       count <= 0;

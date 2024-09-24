@@ -1,6 +1,6 @@
 // top.sv
 // Jordan Carlin, jcarlin@hmc.edu, 7 September 2024
-// Top-level module for the E155 Lab 2 FPGA design
+// Top-level module for the E155 Lab 3 FPGA design
 
 module top (
   input  logic       clk, reset,
@@ -17,14 +17,12 @@ module top (
   logic [3:0] syncedCols;
   logic [3:0] num, num0, num1, numOut;
 
-  // slow clock for fsm
+  // slower clock for rest of system
   counter #(4800) counter(.clk, .reset, .clk_stb(fsm_clk));
 
   // Read keypad
   sync sync(.clk(fsm_clk), .reset, .async(cols), .synced(syncedCols));
-  // sync delayRows(.clk(fsm_clk), .reset, .async(syncedRows), .synced(rows));
   key_scan key_scan(.clk(fsm_clk), .reset, .cols(syncedCols), .rows, .newNum, .scanning, .waiting);
-
 
   // Determine number based on which key is pressed
   key_decoder key_decoder(.rows, .cols(syncedCols), .num);
@@ -46,6 +44,7 @@ module top (
   // Seven-segment display decoder
   seg_decoder seg_decoder(.num(numOut), .segs);
 
+  // Debug signals
   assign outCols = |cols;
 
 endmodule

@@ -1,6 +1,6 @@
 // key_scan.sv
 // Jordan Carlin, jcarlin@hmc.edu, 15 September 2024
-// Matrix keypad scanner
+// Matrix keypad scanner FSM
 
 module key_scan #(parameter DELAY = 300, parameter DEBOUNCE=15, parameter SYNC_DELAY = 2) (
   input  logic       clk, reset,
@@ -19,13 +19,20 @@ module key_scan #(parameter DELAY = 300, parameter DEBOUNCE=15, parameter SYNC_D
   typedef enum logic [3:0] { IDLE, R0, R1, R2, R3, R0_CHECK, R1_CHECK, R2_CHECK, R3_CHECK, POSSIBLE_PRESSED, PRESSED, WAIT } statetype;
   statetype state, nextstate;
 
+  // State register
   always_ff @( posedge clk, negedge reset)
     if (~reset) state <= IDLE;
     else state <= nextstate;
   
+  // Retain current row for key_decoder unless deliberately changing rows based on state
   always_ff @(posedge clk, negedge reset)
     if (~reset) rows <= '0;
     else if	(rowChange) rows <= newRows;
+
+  // Counter used by several state transitions
+  always_ff @(posedge clk)
+    if (clearCounter) counter <= 0;
+    else if (incCount) counter <= counter + 1;
 
   // Next state logic
   always_comb
@@ -105,11 +112,7 @@ module key_scan #(parameter DELAY = 300, parameter DEBOUNCE=15, parameter SYNC_D
     /* verilator lint_on CASEINCOMPLETE */
   end
 
-  // Counter for delay
-  always_ff @(posedge clk)
-    if (clearCounter) counter <= 0;
-    else if (incCount) counter <= counter + 1;
-
+  // debug signals
 	assign scanning = (state == R0) | (state == R1) | (state == R2) | (state == R3);
 	assign waiting = (state == WAIT);
 	
